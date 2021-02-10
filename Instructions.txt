@@ -1,0 +1,84 @@
+1. Download and unzip ExtraPuTTY.
+- http://www.extraputty.com/download.php
+
+2. Create and download security credentials through IAM on the AWS console.
+
+3. Create and download a key pair named TU_Dublin in .pem format on the AWS console.
+
+4. Convert the keypair to .ppk format using PuTTYgen.
+
+5. Download and unzip the Git repository.
+- https://github.com/kevinbayliss/cloudformation-demo
+
+6. Create a Management EC2 instance through CloudFormation on the AWS console and connect to it through PuTTY.
+- cloudformation-demo-main\environment\template.yaml
+
+7. Add an SSH access rule to the default security group.
+
+8. Confirm Ansible and Terraform CLI access.
+- ansible --version
+- terraform --version
+
+9. Clone the Git repository.
+- cd ~
+- git clone https://github.com/kevinbayliss/terraform-demo
+- cd terraform-demo
+- ls
+
+10. Create an EC2 instance through Terraform.
+- cd demo_tf_01
+- ls
+- vi main.tf
+- terraform init
+- terraform plan
+- terraform apply
+
+11. View the Terraform state.
+- ls
+- cat terraform.tfstate
+
+12. Connect to the EC2 instance through PuTTY.
+
+13. Delete the module.
+- terraform destroy
+
+14. Create an EC2 instance and an S3 bucket through Terraform.
+- cd ../demo_tf_02
+- ls
+- vi main.tf
+- terraform init
+- terraform plan -out output.terraform
+- terraform apply output.terraform
+
+15. Update the module so the S3 bucket has public read access.
+- cd ../demo_tf_03
+- ls
+- vi main.tf
+- terraform init
+- terraform plan -out output.terraform
+- terraform apply output.terraform
+
+16. Delete the module.
+- terraform destroy
+
+17. Update the module so the S3 bucket has public read access.
+- cd ../demo_tf_02
+- vi main.tf
+  acl = "public-read"
+- terraform init
+- terraform plan -out output.terraform
+- terraform apply output.terraform
+
+18. Delete the module.
+- terraform destroy
+
+19. Create two EC2 instances using parameters through Terraform.
+- cd ../demo_tf_04
+- ls
+- cat provider.tf
+- cat main.tf
+- cat vars.tf
+- vi terraform.tfvars
+- terraform init
+- terraform plan -out output.terraform
+- terraform apply output.terraform
