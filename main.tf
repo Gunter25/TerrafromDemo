@@ -3,9 +3,7 @@ resource "aws_instance" "demo" {
   instance_type = var.INSTANCE_TYPE
   key_name = var.KEY_NAME
   vpc_security_group_ids = [aws_security_group.web-sg.id]
-  tags = {
-	Name = var.TAGS
-  }
+
   count = var.COUNT
 }
 
