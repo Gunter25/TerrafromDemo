@@ -2,7 +2,7 @@ resource "aws_instance" "demo" {
   ami = lookup(var.AMI, var.REGION)
   instance_type = var.INSTANCE_TYPE
   key_name = var.KEY_NAME
-  security_groups = ["${aws_security_group.web-node.name}"]
+  vpc_security_group_ids = [aws_security_group.instance.id]
   tags = {
 	Name = var.TAGS
   }
@@ -12,25 +12,12 @@ resource "aws_instance" "demo" {
 	ports    = ["80", "22"]
   }
 }
-resource "aws_security_group" "web-node" {
-  name = "web-node"
-  description = "Web Security Group"
+resource "aws_security_group" "instance" {
+  name = "terraform-example-instance"
   ingress {
-    from_port = 80
-    to_port = 80
-    protocol = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
-  ingress {
-    from_port = 22
-    to_port = 22
-    protocol = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
-  }    
-  egress {
-    from_port = 0
-    to_port = 0
-    protocol = "-1"
+    from_port   = 8080
+    to_port     = 8080
+    protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }
 }
