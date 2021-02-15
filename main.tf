@@ -9,8 +9,8 @@ resource "aws_instance" "demo" {
   count = var.COUNT
 }
 
-resource "aws_security_group" "web-sg" {
-  name = "${random_pet.name.id}-sg"
+resource "aws_security_group" "demo" {
+  name = "demo"
   ingress {
     from_port   = 80
     to_port     = 80
