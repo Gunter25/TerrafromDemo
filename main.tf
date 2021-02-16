@@ -2,7 +2,7 @@ resource "aws_instance" "demo" {
   ami = lookup(var.AMI, var.REGION)
   instance_type = var.INSTANCE_TYPE
   key_name = var.KEY_NAME
-  vpc_security_group_ids = [aws_security_group.web-sg.id]
+  vpc_security_group_ids = [aws_security_group.demo.id]
 
   count = var.COUNT
 }
@@ -28,11 +28,3 @@ resource "aws_eip" "ip-test-env" {
  
   vpc      = true
 }
-
-resource "aws_internet_gateway" "test-env-gw" {
- 
-tags {
-    Name = "test-env-gw"
-  }
-}
-
