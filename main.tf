@@ -25,12 +25,12 @@ resource "aws_security_group" "demo" {
 }
 
 resource "aws_eip" "ip-test-env" {
-  instance = "${aws_instance.test-ec2-instance.id}"
+ 
   vpc      = true
 }
 
 resource "aws_internet_gateway" "test-env-gw" {
-  vpc_id = "${aws_vpc.test-env.id}"
+ 
 tags {
     Name = "test-env-gw"
   }
