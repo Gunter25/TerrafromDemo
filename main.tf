@@ -10,7 +10,7 @@ resource "aws_instance" "demo" {
 resource "aws_security_group" "demo" {
   name = "demo"
   ingress {
-    from_port   = 80,20
+    from_port   = 80
     to_port     = 80
     protocol    = "ssh"
     cidr_blocks = ["0.0.0.0/0"]
