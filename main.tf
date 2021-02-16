@@ -10,9 +10,9 @@ resource "aws_instance" "demo" {
 resource "aws_security_group" "demo" {
   name = "demo"
   ingress {
-    from_port   = 80
+    from_port   = 80,20
     to_port     = 80
-    protocol    = "tcp"
+    protocol    = "ssh"
     cidr_blocks = ["0.0.0.0/0"]
   }
 
@@ -24,4 +24,15 @@ resource "aws_security_group" "demo" {
   }
 }
 
+resource "aws_eip" "ip-test-env" {
+  instance = "${aws_instance.test-ec2-instance.id}"
+  vpc      = true
+}
+
+resource "aws_internet_gateway" "test-env-gw" {
+  vpc_id = "${aws_vpc.test-env.id}"
+tags {
+    Name = "test-env-gw"
+  }
+}
 
